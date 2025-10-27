@@ -3,7 +3,6 @@ import Footer from '../components/Footer';
 import Header from '../components/Header';
 import { useABTest } from '../hooks/useABTest';
 import ScrollProgressBar from '../components/main/ScrollProgressBar';
-import ScrollToTopButton from '../components/main/ScrollToTopButton';
 import HeroSection from '../components/main/HeroSection';
 import StatsSection from '../components/main/StatsSection';
 import FeaturesSection from '../components/main/FeaturesSection';
@@ -24,7 +23,6 @@ const LandingPage2: React.FC = () => {
         <div className="bg-white dark:bg-gray-900">
             <Header />
             <ScrollProgressBar />
-            <ScrollToTopButton />
             <main>
                 <HeroSection ctaVariant={ctaVariant} />
                 <StatsSection />
@@ -38,7 +36,6 @@ const LandingPage2: React.FC = () => {
                 <FAQSection />
                 <CTASection ctaVariant={ctaVariant} />
             </main>
-            {/* Using the existing global footer */}
             <Footer />
         </div>
     );
