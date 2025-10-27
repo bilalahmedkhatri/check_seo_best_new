@@ -10,12 +10,16 @@ import Header from '../components/Header';
 
 // --- Reusable Icon Components ---
 const CheckIcon = () => <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7" /></svg>;
-const ChevronDownIcon = () => <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7" /></svg>;
+const ChevronDownIcon = () => <svg className="w-6 h-6 transition-transform duration-300" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7" /></svg>;
 const ArrowUpIcon = () => <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 10l7-7m0 0l7 7m-7-7v18" /></svg>;
 const StarIcon = () => <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>;
 const SEOIcon = () => <svg className="w-8 h-8" stroke="currentColor" fill="none" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" /></svg>;
 const ContentIcon = () => <svg className="w-8 h-8" stroke="currentColor" fill="none" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" /></svg>;
 const AnalyticsIcon = () => <svg className="w-8 h-8" stroke="currentColor" fill="none" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" /></svg>;
+
+const InputIcon = () => <svg className="w-10 h-10" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path></svg>;
+const InsightIcon = () => <svg className="w-10 h-10" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"></path></svg>;
+const RankIcon = () => <svg className="w-10 h-10" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"></path></svg>;
 
 // --- Custom Hooks ---
 const useTypingEffect = (text: string, duration: number, start: boolean) => {
@@ -269,6 +273,103 @@ const FeaturesSection: React.FC = () => {
     );
 };
 
+const HowItWorksSection: React.FC = () => {
+    const sectionRef = useScrollAnimation<HTMLDivElement>();
+    const steps = [
+        { icon: <InputIcon />, title: 'Input & Analyze', description: 'Enter a topic, keyword, or URL. Our Gemini-powered AI gets to work instantly, analyzing SERPs and competitors in real-time.' },
+        { icon: <InsightIcon />, title: 'Get AI Insights', description: 'Receive comprehensive reports, from long-tail keyword lists to full content briefs and technical audit checklists.' },
+        { icon: <RankIcon />, title: 'Optimize & Rank', description: 'Implement our clear, actionable recommendations to optimize your content and technical SEO, then watch your rankings climb.' },
+    ];
+    return (
+        <section ref={sectionRef} className="py-20 bg-white dark:bg-gray-900">
+            <div className="w-full max-w-6xl mx-auto px-4 sm:px-6 md:px-8 text-center">
+                <h2 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-12 animate-on-scroll fade-in">Achieve SEO Success in 3 Simple Steps</h2>
+                <div className="relative grid md:grid-cols-3 gap-12">
+                    <div className="absolute top-1/2 left-0 w-full h-0.5 bg-gray-200 dark:bg-gray-700 hidden md:block"></div>
+                    {steps.map((step, i) => (
+                        <div key={i} className={`relative animate-on-scroll fade-in delay-${i * 100 + 100}`}>
+                            <div className="flex items-center justify-center w-24 h-24 mx-auto mb-6 rounded-full bg-brand-primary/10 text-brand-primary border-4 border-white dark:border-gray-900">
+                                <span className="text-4xl font-bold">{i + 1}</span>
+                            </div>
+                            <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-2">{step.title}</h3>
+                            <p className="text-gray-600 dark:text-gray-400">{step.description}</p>
+                        </div>
+                    ))}
+                </div>
+            </div>
+        </section>
+    );
+};
+
+const WhyChooseUsSection: React.FC = () => {
+    const sectionRef = useScrollAnimation<HTMLDivElement>();
+    const advantages = [
+        'Unified All-in-One Workflow',
+        'Powered by Google\'s Gemini AI',
+        'Actionable, Data-Driven Insights',
+        'Automated Content Briefs & Audits',
+        'Intuitive & Beginner-Friendly',
+        'Cost-Effective vs. Multiple Tools'
+    ];
+    return (
+        <section ref={sectionRef} className="py-20 bg-gray-100 dark:bg-gray-800/50">
+            <div className="w-full max-w-6xl mx-auto px-4 sm:px-6 md:px-8 grid md:grid-cols-2 gap-12 items-center">
+                <div className="animate-on-scroll slide-in-left">
+                    <h2 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-4">The Smarter Way to Do SEO</h2>
+                    <p className="text-lg text-gray-600 dark:text-gray-300 mb-8">Stop juggling multiple, expensive, and complicated tools. Our integrated AI suite gives you a decisive edge by combining cutting-edge technology with a seamless user experience.</p>
+                    <ul className="space-y-4">
+                        {advantages.map((adv, i) => (
+                            <li key={i} className="flex items-center text-lg animate-on-scroll fade-in" style={{transitionDelay: `${i * 100 + 200}ms`}}>
+                                <span className="flex-shrink-0 w-7 h-7 bg-green-500 text-white rounded-full flex items-center justify-center mr-3"><CheckIcon /></span>
+                                <span className="text-gray-800 dark:text-gray-200">{adv}</span>
+                            </li>
+                        ))}
+                    </ul>
+                </div>
+                <div className="animate-on-scroll slide-in-right">
+                    <div className="bg-white dark:bg-gray-800 p-4 rounded-xl shadow-2xl relative aspect-[4/3]">
+                         <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=1470&auto=format&fit=crop" alt="Dashboard analytics" className="rounded-lg w-full h-full object-cover" />
+                         <div className="absolute -bottom-4 -right-4 bg-brand-primary text-white p-4 rounded-lg shadow-lg">
+                            <AnalyticsIcon />
+                         </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    );
+};
+
+const TestimonialsSection: React.FC = () => {
+    const sectionRef = useScrollAnimation<HTMLDivElement>();
+    const testimonials = [
+        { name: 'Jessica Miller', role: 'Marketing Manager, TechCorp', quote: 'This tool is a game-changer. We consolidated three different subscriptions into this one platform and our content workflow has never been smoother. The AI briefs are incredibly accurate and save us hours each week.' },
+        { name: 'David Chen', role: 'Owner, Digital Leap Agency', quote: 'As an agency, efficiency is everything. The SEO Audit and SERP analysis tools allow us to onboard new clients and deliver value faster than ever. The reports are comprehensive and easy for clients to understand.' },
+        { name: 'Sophie Carter', role: 'Full-Time Blogger & Creator', quote: 'I was intimidated by SEO, but this tool makes it so accessible. The Keyword Strategist helped me build a content plan that doubled my organic traffic in three months. I finally feel like I\'m in control of my growth.' },
+    ];
+    return (
+        <section ref={sectionRef} className="py-20 bg-white dark:bg-gray-900">
+            <div className="w-full max-w-6xl mx-auto px-4 sm:px-6 md:px-8 text-center">
+                <h2 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-12 animate-on-scroll fade-in">Don't Just Take Our Word For It</h2>
+                <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+                    {testimonials.map((t, i) => (
+                        <div key={i} className={`bg-gray-50 dark:bg-gray-800 p-8 rounded-xl shadow-lg flex flex-col animate-on-scroll scale-in delay-${i * 100 + 100}`}>
+                            <div className="flex text-yellow-400 mb-4"><StarIcon /><StarIcon /><StarIcon /><StarIcon /><StarIcon /></div>
+                            <p className="text-gray-600 dark:text-gray-300 mb-6 text-left flex-grow">"{t.quote}"</p>
+                            <div className="flex items-center mt-auto">
+                                <div className="w-12 h-12 bg-gray-300 dark:bg-gray-600 rounded-full mr-4 flex-shrink-0"></div>
+                                <div>
+                                    <p className="font-bold text-gray-900 dark:text-white text-left">{t.name}</p>
+                                    <p className="text-sm text-brand-primary text-left">{t.role}</p>
+                                </div>
+                            </div>
+                        </div>
+                    ))}
+                </div>
+            </div>
+        </section>
+    );
+};
+
 const FAQSection: React.FC = () => {
     const sectionRef = useScrollAnimation<HTMLDivElement>();
     const [openFAQ, setOpenFAQ] = useState<number | null>(0);
@@ -281,21 +382,42 @@ const FAQSection: React.FC = () => {
     ];
 
     return (
-        <section ref={sectionRef} className="py-20 bg-white dark:bg-gray-900">
+        <section ref={sectionRef} className="py-20 bg-gray-100 dark:bg-gray-800/50">
             <div className="w-full max-w-3xl mx-auto px-4 sm:px-6 md:px-8">
                 <h2 className="text-3xl md:text-4xl font-bold text-center text-gray-900 dark:text-white mb-12 animate-on-scroll fade-in">Frequently Asked Questions</h2>
                 <div className="space-y-4">
                     {faqs.map((faq, index) => (
-                        <div key={index} className="border border-gray-200 dark:border-gray-700 rounded-lg animate-on-scroll slide-in-left" style={{transitionDelay: `${index * 100}ms`}}>
+                        <div key={index} className="bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg animate-on-scroll slide-in-left shadow-sm" style={{transitionDelay: `${index * 100}ms`}}>
                             <button onClick={() => setOpenFAQ(openFAQ === index ? null : index)} className="w-full flex justify-between items-center p-4 sm:p-6 text-left">
                                 <span className="text-lg font-semibold text-gray-900 dark:text-white">{faq.q}</span>
-                                <ChevronDownIcon />
+                                <span className={`${openFAQ === index ? 'transform rotate-180' : ''}`}><ChevronDownIcon /></span>
                             </button>
                             <div className={`faq-content ${openFAQ === index ? 'open' : ''}`}>
                                 <p className="text-gray-600 dark:text-gray-300 px-4 sm:px-6">{faq.a}</p>
                             </div>
                         </div>
                     ))}
+                </div>
+            </div>
+        </section>
+    );
+};
+
+const CTASection: React.FC = () => {
+    const sectionRef = useScrollAnimation<HTMLDivElement>();
+    return (
+        <section ref={sectionRef} className="relative bg-gray-900 text-white overflow-hidden py-20">
+            <div className="absolute inset-0 bg-gradient-to-br from-brand-primary to-brand-secondary animate-gradient-bg"></div>
+            <div className="relative w-full mx-auto max-w-4xl px-4 sm:px-6 md:px-8 text-center">
+                <h2 className="text-3xl md:text-5xl font-extrabold tracking-tight mb-4 animate-on-scroll fade-in">Ready to Dominate the SERPs?</h2>
+                <p className="text-lg text-gray-200 max-w-2xl mx-auto mb-8 animate-on-scroll fade-in delay-100">
+                    Join thousands of marketers who are saving time and getting better results. Start your free, no-risk 7-day trial today.
+                </p>
+                <div className="animate-on-scroll fade-in delay-200">
+                    <Link to="/keywordResearch" onClick={createRipple} className="ripple-btn inline-block bg-white hover:bg-gray-200 text-brand-primary font-bold py-4 px-10 text-lg rounded-lg focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-900 focus:ring-white transition-all duration-300 transform hover:scale-105">
+                        Claim Your Free Trial
+                    </Link>
+                    <p className="mt-4 text-sm text-gray-300">No credit card required.</p>
                 </div>
             </div>
         </section>
@@ -314,8 +436,11 @@ const LandingPage2: React.FC = () => {
                 <HeroSection />
                 <StatsSection />
                 <FeaturesSection />
+                <HowItWorksSection />
+                <WhyChooseUsSection />
+                <TestimonialsSection />
                 <FAQSection />
-                 {/* Placeholder for other sections like Showcase, Testimonials, Pricing, CTA etc. */}
+                <CTASection />
             </main>
             {/* Using the existing global footer */}
             <Footer />
