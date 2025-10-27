@@ -74,6 +74,23 @@ const useCountUp = (target: number, duration = 2000) => {
     return [count, countRef] as const;
 };
 
+const useABTest = (testName: string): 'A' | 'B' => {
+  const [variant, setVariant] = useState<'A' | 'B'>('A'); // Default to A, prevents hydration mismatch
+
+  useEffect(() => {
+    let assignedVariant = localStorage.getItem(testName) as 'A' | 'B' | null;
+
+    if (!assignedVariant) {
+      assignedVariant = Math.random() < 0.5 ? 'A' : 'B';
+      localStorage.setItem(testName, assignedVariant);
+    }
+    
+    setVariant(assignedVariant);
+  }, [testName]);
+
+  return variant;
+};
+
 // --- General UI Components ---
 const ParticleCanvas: React.FC = () => {
     const canvasRef = useRef<HTMLCanvasElement | null>(null);
@@ -165,7 +182,7 @@ const createRipple = (event: React.MouseEvent<HTMLElement>) => {
 
 // --- Section Components ---
 
-const HeroSection: React.FC = () => {
+const HeroSection: React.FC<{ ctaVariant: 'A' | 'B' }> = ({ ctaVariant }) => {
     const sectionRef = useScrollAnimation<HTMLDivElement>();
     const [startTyping, setStartTyping] = useState(false);
     const typedSubtitle = useTypingEffect("Automate your workflow from keyword research to content optimization and outrank your competitors.", 40, startTyping);
@@ -176,6 +193,7 @@ const HeroSection: React.FC = () => {
     }, []);
 
     const titleText = "AI-Powered SEO Studio";
+    const buttonText = ctaVariant === 'A' ? 'Start Your Free Trial' : 'Get Started for Free';
 
     return (
         <section ref={sectionRef} className="relative bg-gray-900 text-white min-h-screen flex items-center justify-center overflow-hidden">
@@ -197,7 +215,7 @@ const HeroSection: React.FC = () => {
                 </p>
                 <div className="mt-10 animate-on-scroll fade-in delay-400">
                     <Link to="/keywordResearch" onClick={createRipple} className="ripple-btn inline-block bg-brand-primary hover:bg-brand-secondary text-white font-bold py-4 px-10 text-lg rounded-lg focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-900 focus:ring-brand-primary transition-all duration-300 transform hover:scale-105 btn-pulse">
-                        Start Your Free Trial
+                        {buttonText}
                     </Link>
                 </div>
             </div>
@@ -570,8 +588,10 @@ const FAQSection: React.FC = () => {
     );
 };
 
-const CTASection: React.FC = () => {
+const CTASection: React.FC<{ ctaVariant: 'A' | 'B' }> = ({ ctaVariant }) => {
     const sectionRef = useScrollAnimation<HTMLDivElement>();
+    const buttonText = ctaVariant === 'A' ? 'Claim Your Free Trial' : 'Unlock All Features Now';
+
     return (
         <section ref={sectionRef} className="relative bg-gray-900 text-white overflow-hidden py-20">
             <div className="absolute inset-0 bg-gradient-to-br from-brand-primary to-brand-secondary animate-gradient-bg"></div>
@@ -582,7 +602,7 @@ const CTASection: React.FC = () => {
                 </p>
                 <div className="animate-on-scroll fade-in delay-200">
                     <Link to="/keywordResearch" onClick={createRipple} className="ripple-btn inline-block bg-white hover:bg-gray-200 text-brand-primary font-bold py-4 px-10 text-lg rounded-lg focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-900 focus:ring-white transition-all duration-300 transform hover:scale-105">
-                        Claim Your Free Trial
+                        {buttonText}
                     </Link>
                     <p className="mt-4 text-sm text-gray-300">No credit card required.</p>
                 </div>
@@ -594,13 +614,14 @@ const CTASection: React.FC = () => {
 
 // --- Main Landing Page Component ---
 const LandingPage2: React.FC = () => {
+    const ctaVariant = useABTest('primaryCtaTest');
     return (
         <div className="bg-white dark:bg-gray-900">
             <Header />
             <ScrollProgressBar />
             <ScrollToTopButton />
             <main>
-                <HeroSection />
+                <HeroSection ctaVariant={ctaVariant} />
                 <StatsSection />
                 <FeaturesSection />
                 <HowItWorksSection />
@@ -610,7 +631,7 @@ const LandingPage2: React.FC = () => {
                 <PricingSection />
                 <TestimonialsSection2 />
                 <FAQSection />
-                <CTASection />
+                <CTASection ctaVariant={ctaVariant} />
             </main>
             {/* Using the existing global footer */}
             <Footer />
