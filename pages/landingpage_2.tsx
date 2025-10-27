@@ -6,6 +6,7 @@ import { useTheme } from '../contexts/ThemeContext';
 import anime from 'animejs';
 // FIX: Imported Footer component.
 import Footer from '../components/Footer';
+import Header from '../components/Header';
 
 // --- Reusable Icon Components ---
 const CheckIcon = () => <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7" /></svg>;
@@ -306,9 +307,9 @@ const FAQSection: React.FC = () => {
 const LandingPage2: React.FC = () => {
     return (
         <div className="bg-white dark:bg-gray-900">
+            <Header />
             <ScrollProgressBar />
             <ScrollToTopButton />
-            {/* You can add a dedicated header for this page if needed, or rely on the global one */}
             <main>
                 <HeroSection />
                 <StatsSection />

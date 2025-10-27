@@ -1,3 +1,4 @@
+
 import React, { useState, useRef, useEffect } from 'react';
 import anime from 'animejs';
 import { Link, useLocation } from 'react-router-dom';
@@ -44,7 +45,7 @@ const RedoIcon: React.FC = () => (
 
 const Header: React.FC = () => {
   const location = useLocation();
-  const isLandingPage = location.pathname === '/';
+  const isLandingPage = location.pathname === '/' || location.pathname === '/v2';
 
   const currentPathKey = location.pathname.substring(1);
   const isValidKey = NAV_ITEMS.some(item => item.key === currentPathKey);
