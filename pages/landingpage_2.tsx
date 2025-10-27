@@ -20,6 +20,10 @@ const InputIcon = () => <svg className="w-10 h-10" fill="none" stroke="currentCo
 const InsightIcon = () => <svg className="w-10 h-10" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"></path></svg>;
 const RankIcon = () => <svg className="w-10 h-10" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"></path></svg>;
 
+const CheckCircleIcon = () => <svg className="w-6 h-6 text-green-500 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd"></path></svg>;
+const XCircleIcon = () => <svg className="w-6 h-6 text-red-500 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z" clipRule="evenodd"></path></svg>;
+
+
 // --- Custom Hooks ---
 const useTypingEffect = (text: string, duration: number, start: boolean) => {
     const [typedText, setTypedText] = useState('');
@@ -338,6 +342,59 @@ const WhyChooseUsSection: React.FC = () => {
     );
 };
 
+const ComparisonSection: React.FC = () => {
+    const sectionRef = useScrollAnimation<HTMLDivElement>();
+    const comparisonPoints = [
+        { feature: 'Core Technology', ours: 'AI-Powered (Gemini)', theirs: 'Manual / Rule-Based' },
+        { feature: 'Workflow', ours: 'All-in-One Integrated Suite', theirs: 'Multiple Disconnected Tools' },
+        { feature: 'Insights', ours: 'Actionable, Predictive', theirs: 'Raw Data & Metrics' },
+        { feature: 'Ease of Use', ours: 'Intuitive for All Levels', theirs: 'Steep Learning Curve' },
+        { feature: 'Cost', ours: 'Single, Affordable Subscription', theirs: 'Multiple Expensive Subscriptions' },
+        { feature: 'Speed', ours: 'Near-Instant Analysis', theirs: 'Slow, Manual Research' },
+    ];
+    return (
+        <section ref={sectionRef} className="py-20 bg-white dark:bg-gray-900">
+            <div className="w-full max-w-5xl mx-auto px-4 sm:px-6 md:px-8">
+                <div className="text-center mb-12">
+                    <h2 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-4 animate-on-scroll fade-in">The AI Studio Advantage</h2>
+                    <p className="text-lg text-gray-600 dark:text-gray-300 max-w-3xl mx-auto animate-on-scroll fade-in delay-100">See how our integrated AI-powered suite stacks up against traditional, fragmented SEO tools.</p>
+                </div>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <div className="bg-green-50 dark:bg-green-900/50 rounded-xl shadow-lg border-2 border-green-500 p-8 animate-on-scroll slide-in-left">
+                        <h3 className="text-2xl font-bold text-gray-900 dark:text-white text-center mb-6">AI SEO Studio</h3>
+                        <ul className="space-y-4">
+                            {comparisonPoints.map((point, i) => (
+                                <li key={i} className="flex items-start animate-on-scroll fade-in" style={{transitionDelay: `${i * 100 + 200}ms`}}>
+                                    <CheckCircleIcon />
+                                    <div className="ml-3">
+                                        <p className="font-semibold text-gray-800 dark:text-gray-200">{point.feature}</p>
+                                        <p className="text-gray-600 dark:text-gray-300">{point.ours}</p>
+                                    </div>
+                                </li>
+                            ))}
+                        </ul>
+                    </div>
+                    <div className="bg-gray-50 dark:bg-gray-800 rounded-xl shadow-lg border border-gray-200 dark:border-gray-700 p-8 animate-on-scroll slide-in-right">
+                         <h3 className="text-2xl font-bold text-gray-900 dark:text-white text-center mb-6">Traditional Tools</h3>
+                         <ul className="space-y-4">
+                            {comparisonPoints.map((point, i) => (
+                                <li key={i} className="flex items-start animate-on-scroll fade-in" style={{transitionDelay: `${i * 100 + 300}ms`}}>
+                                    <XCircleIcon />
+                                    <div className="ml-3">
+                                        <p className="font-semibold text-gray-800 dark:text-gray-200">{point.feature}</p>
+                                        <p className="text-gray-600 dark:text-gray-400">{point.theirs}</p>
+                                    </div>
+                                </li>
+                            ))}
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+    );
+};
+
+
 const TestimonialsSection: React.FC = () => {
     const sectionRef = useScrollAnimation<HTMLDivElement>();
     const testimonials = [
@@ -449,6 +506,37 @@ const PricingSection: React.FC = () => {
     );
 };
 
+const TestimonialsSection2: React.FC = () => {
+    const sectionRef = useScrollAnimation<HTMLDivElement>();
+    const testimonials = [
+        { name: 'Alex Johnson', role: 'E-commerce Store Owner', quote: 'The on-page optimizer is like having an SEO expert on call 24/7. My product page rankings have seen a significant boost since I started using the recommendations.', color: 'bg-blue-50 dark:bg-blue-900/50' },
+        { name: 'Maria Garcia', role: 'Freelance Content Writer', quote: 'This tool has streamlined my entire writing process. The AI briefs give me a perfect roadmap, and I can deliver SEO-optimized content to my clients with confidence every single time.', color: 'bg-green-50 dark:bg-green-900/50' },
+        { name: 'Tom Iwinski', role: 'Founder, Startup SaaS', quote: 'As a startup, we need to be smart with our budget. This platform gives us the power of an entire SEO team at a fraction of the cost. It\'s been instrumental in our early-stage growth.', color: 'bg-yellow-50 dark:bg-yellow-900/50' },
+    ];
+    return (
+        <section ref={sectionRef} className="py-20 bg-white dark:bg-gray-900">
+            <div className="w-full max-w-6xl mx-auto px-4 sm:px-6 md:px-8 text-center">
+                <h2 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-12 animate-on-scroll fade-in">More Praise From Our Users</h2>
+                <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+                    {testimonials.map((t, i) => (
+                        <div key={i} className={`p-8 rounded-xl shadow-lg flex flex-col animate-on-scroll scale-in delay-${i * 100 + 100} ${t.color}`}>
+                            <div className="flex text-yellow-400 mb-4"><StarIcon /><StarIcon /><StarIcon /><StarIcon /><StarIcon /></div>
+                            <p className="text-gray-600 dark:text-gray-300 mb-6 text-left flex-grow">"{t.quote}"</p>
+                            <div className="flex items-center mt-auto">
+                                <div className="w-12 h-12 bg-gray-300 dark:bg-gray-600 rounded-full mr-4 flex-shrink-0"></div>
+                                <div>
+                                    <p className="font-bold text-gray-900 dark:text-white text-left">{t.name}</p>
+                                    <p className="text-sm text-brand-primary text-left">{t.role}</p>
+                                </div>
+                            </div>
+                        </div>
+                    ))}
+                </div>
+            </div>
+        </section>
+    );
+};
+
 const FAQSection: React.FC = () => {
     const sectionRef = useScrollAnimation<HTMLDivElement>();
     const [openFAQ, setOpenFAQ] = useState<number | null>(0);
@@ -517,8 +605,10 @@ const LandingPage2: React.FC = () => {
                 <FeaturesSection />
                 <HowItWorksSection />
                 <WhyChooseUsSection />
+                <ComparisonSection />
                 <TestimonialsSection />
                 <PricingSection />
+                <TestimonialsSection2 />
                 <FAQSection />
                 <CTASection />
             </main>
