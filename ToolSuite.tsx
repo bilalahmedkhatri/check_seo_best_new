@@ -6,6 +6,7 @@ import SERPMonitoring from './pages/SERPMonitoring';
 import ContentBrief from './pages/ContentBrief';
 import OnPageOptimizer from './pages/OnPageOptimizer';
 import KeywordStrategist from './pages/KeywordStrategist';
+import LandingPage2 from './pages/landing-age_2'
 import SEOAudit from './pages/SEOAudit';
 import Header from './components/Header';
 import Footer from './components/Footer';
@@ -64,6 +65,7 @@ const ToolSuite: React.FC = () => {
           <Route path="/onPageOptimizer" element={<OnPageOptimizer />} />
           <Route path="/keywordStrategist" element={<KeywordStrategist />} />
           <Route path="/seoAudit" element={<SEOAudit />} />
+          <Route path="/Landing Page 2" element={<LandingPage2 />} />
           <Route path="*" element={<Navigate to={`/${NAV_ITEMS[0].key}`} replace />} />
         </Routes>
       </main>
