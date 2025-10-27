@@ -1,6 +1,6 @@
 import React from 'react';
 
-export type NavItemKey = 'keywordResearch' | 'serpMonitoring' | 'contentBrief' | 'onPageOptimizer' | 'keywordStrategist' | 'seoAudit';
+export type NavItemKey = 'keywordResearch' | 'serpMonitoring' | 'contentBrief' | 'onPageOptimizer' | 'keywordStrategist' | 'seoAudit' | 'v2';
 
 export interface NavItem {
   key: NavItemKey;

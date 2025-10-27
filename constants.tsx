@@ -37,5 +37,11 @@ export const NAV_ITEMS: NavItem[] = [
     label: 'Audit',
     title: 'AI Website SEO Audit',
     description: 'Conduct a comprehensive health check of your website. Our AI analyzes technical SEO, content quality, and on-page factors to provide a clear, actionable audit report.'
+  },
+  {
+    key: 'v2',
+    label: 'Landing V2',
+    title: 'New Landing Page',
+    description: 'A preview of our new and improved landing page design.'
   }
 ];
